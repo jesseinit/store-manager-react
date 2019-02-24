@@ -1,0 +1,17 @@
+@mixin desktop {
+  @media (min-width: #{$desktop-width}) {
+    @content;
+  }
+}
+
+@mixin tab {
+  @media (min-width: #{$tab-width}) {
+    @content;
+  }
+}
+
+@mixin retina {
+  @media (min-width: #{$retina-width}) {
+    @content;
+  }
+}

@@ -1,0 +1,47 @@
+.btn {
+  display: inline-block;
+  position: relative;
+  font-family: inherit;
+  border: none;
+  outline: none;
+  font-size: 0.8rem;
+  box-shadow: 0 1px 1px 1px rgba(0, 0, 0, 0.1);
+  border-radius: 3px;
+  color: #fff;
+  padding: 8px;
+  background: #eee;
+
+  @include desktop {
+    padding: 10px;
+    font-size: 1rem;
+  }
+
+  &__primary {
+    background: $dark-blue;
+  }
+
+  &--blue {
+    background: $dark-blue;
+  }
+
+  &--orange {
+    background: $orange;
+  }
+
+  &:disabled {
+    background: #fbfbfb;
+    border: 1px solid #ddd;
+    color: #d0d0cf;
+    box-shadow: none;
+    &.btn--gradient {
+      background: #fbfbfb;
+    }
+  }
+
+  &--gradient {
+    background: linear-gradient(45deg, $orange, #f57a7a);
+    &:hover {
+      background: linear-gradient(266deg, $orange 10%, #f57a7a 80%);
+    }
+  }
+}

@@ -1,0 +1,20 @@
+.errors {
+  margin-bottom: 10px;
+  background: #fdf6f6;
+  border: 1px solid rgb(255, 193, 193);
+  padding: 5px;
+  padding-left: 10px;
+
+  @include desktop {
+    padding: 10px 15px;
+  }
+
+  & li {
+    font-size: 0.8rem;
+    list-style-type: disc;
+    list-style-position: inside;
+    @include desktop {
+      font-size: 0.93rem;
+    }
+  }
+}

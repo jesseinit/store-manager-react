@@ -1,0 +1,24 @@
+.spinner {
+  &:before {
+    position: absolute;
+    z-index: 15;
+    content: '';
+    width: 20px;
+    height: 20px;
+    left: 50%;
+    top: 19px;
+    border-radius: 50%;
+    border-left: 2px solid white;
+    border-right: 2px solid white;
+    animation: rotate360 0.9s infinite cubic-bezier(0.68, -0.55, 0.27, 1.55);
+  }
+}
+
+@keyframes rotate360 {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

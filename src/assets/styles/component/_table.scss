@@ -1,0 +1,91 @@
+.table-wrapper {
+  width: 100%;
+  overflow-x: scroll;
+  @include desktop {
+    overflow-x: unset;
+  }
+  &.no-flow {
+    height: auto;
+    overflow-y: unset;
+  }
+}
+
+.table {
+  width: 100%;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-collapse: collapse;
+  box-shadow: 0px 4.71062px 23.5531px rgba(0, 0, 0, 0.07);
+  .total {
+    text-align: right;
+  }
+
+  thead {
+    background: $light-grey;
+    color: $deep-black;
+    font-size: 0.8rem;
+    @include desktop {
+      font-size: 0.9rem;
+    }
+    @include retina {
+      font-size: 1.1rem;
+    }
+  }
+
+  tbody {
+    font-size: 0.8rem;
+
+    @include desktop {
+      font-size: 0.9rem;
+    }
+
+    & button {
+      padding: 5px;
+      border-radius: 3px;
+      border: none;
+      outline: none;
+      margin: 0 2px 2px;
+      cursor: pointer;
+      &.red {
+        background: #ea5454;
+        color: #fff;
+      }
+      &.blue {
+        background: #4297ff;
+        color: #fff;
+      }
+      @include retina {
+        font-size: 0.8rem;
+      }
+    }
+  }
+
+  tbody tr:hover {
+    background: rgba(#eee, 0.3);
+  }
+
+  thead,
+  tr {
+    border-bottom: 1px solid transparentize($light-blue, 0.8);
+  }
+
+  td,
+  th {
+    padding: 0.6rem;
+    text-align: center;
+  }
+
+  & .remove {
+    display: block;
+    background: rgb(252, 64, 64);
+    font-weight: bold;
+    font-size: 1rem;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    line-height: 19.9px;
+    color: #fff;
+    border-radius: 20px;
+    cursor: pointer;
+  }
+}

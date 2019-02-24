@@ -1,0 +1,126 @@
+.modal {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  z-index: 10;
+  & .form-body {
+    position: relative;
+    width: 350px;
+    background: #fff;
+    padding-bottom: 10px;
+    @include desktop {
+      width: 400px;
+    }
+    @include retina {
+      width: 500px;
+    }
+
+    .form__closeBtn {
+      position: absolute;
+      top: -11px;
+      right: -12px;
+      display: block;
+      width: 30px;
+      height: 30px;
+      border-radius: 20px;
+      color: rgba(0, 0, 0, 0.9);
+      background: #e6e5e5;
+      font-size: 1.3rem;
+      cursor: pointer;
+      &:hover {
+        color: rgba(255, 117, 117, 0.9);
+      }
+    }
+    .input-group {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .input-file {
+      width: 100%;
+    }
+    form {
+      padding: 20px;
+    }
+
+    h3 {
+      font-size: 0.9rem;
+      margin-bottom: 10px;
+      padding: 15px;
+      text-align: center;
+      font-size: 1em;
+      font-weight: 300;
+      color: #fff;
+      background: $dark-blue;
+      box-shadow: 0 1px 1px #0f70e4;
+      @include retina {
+        font-size: 1.3rem;
+      }
+    }
+
+    label {
+      text-align: left;
+      margin-right: 5px;
+      font-size: 0.9rem;
+      width: 50%;
+    }
+
+    input,
+    select {
+      margin: 3px;
+      width: 100%;
+      padding: 15px 10px;
+      border: 1px solid #c2c2c2;
+      outline: none;
+      @include retina {
+        font-size: 1rem;
+      }
+      &:focus {
+        border: 1px solid $dark-blue;
+      }
+    }
+
+    select {
+      padding-right: 20px;
+      border-radius: 0;
+      background: url('../img/select_dropdown.png') 95% 50% no-repeat;
+      background-size: 10px 10px;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+    }
+
+    button {
+      padding: 7px 15px;
+      border: none;
+      border-radius: 3px;
+      outline: none;
+      font-weight: bold;
+      cursor: pointer;
+
+      @include retina {
+        padding: 10px 15px;
+        font-size: 1.1rem;
+      }
+
+      &#confirm-delete {
+        color: #fff;
+        background: #fa4e4e;
+      }
+    }
+
+    /* input[type='submit'] {
+      border: none;
+      font-size: 1rem;
+      color: #fff;
+      background: $dark-blue;
+      box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+      margin-top: 10px;
+    } */
+  }
+}
