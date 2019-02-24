@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import './LoginForm.scss';
 
 import ErrorToast from '../ErrorToast/ErrorToast';
-import * as authActions from '../../actions/authActions';
+import * as authActions from '../../actions/authActions/authActions';
 import Spinner from '../Spinner/Spinner';
 
 export class LoginForm extends Component {

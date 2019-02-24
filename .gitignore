@@ -63,3 +63,4 @@ typings/
 package-lock.json
 *.snap
 *__snapshots__
+dist

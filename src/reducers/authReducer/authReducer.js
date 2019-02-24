@@ -5,7 +5,7 @@ import {
   USER_LOGIN_LOADING,
   USER_LOGIN_SUCCESS,
   CLEAR_LOGIN_ERRORS
-} from '../actions/authActions';
+} from '../../actions/authActions/authActions';
 
 const token = localStorage.getItem('user');
 
