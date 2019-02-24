@@ -1,0 +1,101 @@
+.filters {
+  margin-top: 10px;
+  margin-bottom: 5px;
+  display: block;
+
+  @include desktop {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  #search-name {
+    @include desktop {
+      width: 225px;
+    }
+  }
+
+  #filter-name,
+  #filter-rows,
+  #filter-qty,
+  #sort-date,
+  #sort-id {
+    @include desktop {
+      margin-right: 5px;
+    }
+  }
+
+  .filter {
+    display: block;
+    .clear {
+      margin-top: 0px;
+    }
+    @include desktop {
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  &__clear {
+    padding: 5px 5px;
+    border: none;
+    box-shadow: 0 2px 3px rgba(#000, 0.1);
+    background: #eee;
+    width: 100%;
+    @include desktop {
+      margin-left: 3px;
+      padding: 5px;
+      width: auto;
+    }
+    @include retina {
+      font-size: 0.9rem;
+      padding: 6px;
+    }
+  }
+
+  fieldset {
+    padding: 5px;
+    border: 1px solid rgba(#ccc, 0.5);
+    margin-bottom: 10px;
+    legend {
+      font-size: 0.8rem;
+    }
+    input {
+      width: 100%;
+      margin-bottom: 5px;
+      padding: 7px;
+      border: 1px solid #c2c2c2;
+      @include desktop {
+        width: auto;
+      }
+      @include retina {
+        width: auto;
+        padding: 0.3rem;
+        font-size: 0.8rem;
+      }
+    }
+    @include desktop {
+      display: block;
+      width: max-content;
+    }
+    strong {
+      font-size: 14px;
+      font-weight: normal;
+    }
+    select {
+      padding: 5px 20px 5px 5px;
+      margin-bottom: 5px;
+      width: 100%;
+      border-radius: 0;
+      background: url('../img/select_dropdown.png') 95% 50% no-repeat;
+      background-size: 10px 10px;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      @include desktop {
+        font-size: 0.8rem;
+        margin-bottom: 0;
+        width: auto;
+      }
+    }
+  }
+}

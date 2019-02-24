@@ -1,0 +1,51 @@
+.toast {
+  position: fixed;
+  right: 50%;
+  transform: translate(50%);
+  z-index: 20;
+  height: 35px;
+  width: 70%;
+  border-radius: 5px;
+  padding: 0 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  @include desktop {
+    width: 30%;
+  }
+  & p {
+    font-weight: 400;
+    font-size: 0.7em;
+    @include desktop {
+      font-size: 0.9rem;
+    }
+  }
+
+  &--error,
+  &--success {
+    animation-name: toastAnimation;
+    animation-duration: 0.3s;
+    animation-timing-function: linear;
+    top: 12px;
+  }
+
+  &--error {
+    background: lighten(#f84949, 10%);
+    color: rgba(#000, 0.8);
+  }
+
+  &--success {
+    background: lighten(#16a716, 30%);
+    color: rgba(#000, 0.8);
+  }
+}
+
+@keyframes toastAnimation {
+  0% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+    top: 12px;
+  }
+}

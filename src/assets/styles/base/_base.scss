@@ -1,0 +1,31 @@
+@import url('https://fonts.googleapis.com/css?family=Nunito:400,700');
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  list-style: none;
+  font-family: Nunito, 'Segeo UI';
+  transition: all 0.2s ease-in;
+}
+
+#App {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  position: relative;
+}
+
+a {
+  text-decoration: none;
+}
+
+.row {
+  padding: 0 10px;
+  @include desktop {
+    padding: 0 15px;
+  }
+  @include retina {
+    padding: 0 10%;
+  }
+}

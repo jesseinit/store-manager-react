@@ -1,0 +1,10 @@
+@import '../../assets/styles/abstract/index';
+
+#site-main {
+  flex: 1;
+
+  @include desktop {
+    display: flex;
+    align-items: flex-start;
+  }
+}
