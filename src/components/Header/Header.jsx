@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import * as authActions from '../../actions/authActions';
+import * as authActions from '../../actions/authActions/authActions';
 import './Header.scss';
 import CartButton from '../CartButton/CartButton';
 

@@ -1,5 +1,4 @@
-import decodeJwt from 'jwt-decode';
-import Util from '../utils';
+import Util from '../../utils';
 
 export const USER_LOGIN_LOADING = 'USER_LOGIN_STARTED';
 export const USER_LOGIN_SUCCESS = 'USER_LOGIN_SUCCESS';
@@ -41,12 +40,12 @@ export const loginUser = userInfo => async dispatch => {
 
     const userDetails = {
       token: data.token,
-      role: decodeJwt(data.token).role
+      role: data.role
     };
 
     localStorage.setItem('user', data.token);
 
-    if (decodeJwt(data.token).role === 'Attendant') localStorage.setItem('cart', '[]');
+    if (data.role === 'Attendant') localStorage.setItem('cart', '[]');
 
     dispatch({
       type: USER_LOGIN_SUCCESS,

@@ -2,6 +2,9 @@
 
 ### Build Status
 
+[![Build Status](https://travis-ci.com/jesseinit/store-manager-react.svg?branch=master)](https://travis-ci.com/jesseinit/store-manager-react)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/27e9c0000b8afbb10c08/test_coverage)](https://codeclimate.com/github/jesseinit/store-manager-react/test_coverage)
+
 Store Manager is a web application that helps store owners manage sales and product inventory records.
 
 ## App Links
