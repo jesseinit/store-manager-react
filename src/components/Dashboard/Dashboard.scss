@@ -1,0 +1,217 @@
+@import '../../assets/styles/abstract/index';
+
+.main {
+  width: 100%;
+  margin-top: 20px;
+  margin-bottom: 10px;
+
+  @include desktop {
+    padding-left: 15px;
+    width: 80%;
+  }
+
+  .search {
+    display: block;
+    margin: 0px 0 20px;
+
+    @include desktop {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    &__form {
+      display: flex;
+      flex-direction: column;
+      border: 1px solid #4297ff;
+      box-shadow: 0px 2px 1px rgba(#4297ff, 0.1);
+      border-radius: 3px;
+      @include desktop {
+        flex-direction: row;
+      }
+    }
+
+    &__input,
+    &__catergory,
+    &__submit {
+      border: none;
+      outline: none;
+    }
+
+    &__input {
+      height: 40px;
+      font-size: 1rem;
+      padding: 10px 15px;
+      @include desktop {
+        width: 500px;
+      }
+    }
+
+    &__catergory {
+      font-size: 0.8rem;
+      height: 40px;
+      padding: 0 40px 0 10px;
+      border-top: 1px solid #4297ff;
+      border-radius: 0;
+      background: url('../../assets/img/select_dropdown.png') no-repeat;
+      background-position: 95% 50%;
+      background-size: 10px 10px;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      @include desktop {
+        border-top: none;
+        border-left: 1px solid #4297ff;
+      }
+      @include retina {
+        font-size: 0.8rem;
+        background-position: 85% 50%;
+      }
+    }
+
+    &__submit {
+      background: $dark-blue;
+      padding: 7px 20px;
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 400;
+      border-top-right-radius: 3px;
+      border-bottom-right-radius: 3px;
+      &:hover {
+        background: lighten($dark-blue, 5%);
+        cursor: pointer;
+      }
+      @include desktop {
+        padding: 0 20px;
+      }
+    }
+  }
+
+  .no-result {
+    font-size: 0.9rem;
+    text-align: center;
+    margin-bottom: 20px;
+    @include desktop {
+      font-size: 1.18rem;
+    }
+  }
+
+  .sales {
+    position: relative;
+    input[type='submit'],
+    input[type='button'] {
+      padding: 7px;
+      border: none;
+      background: #4297fe;
+      box-shadow: 0 2px 3px rgba(#000, 0.1);
+      color: #fff;
+      @include retina {
+        padding: 5px;
+        margin-left: 5px;
+      }
+    }
+  }
+
+  .summary {
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(rgb(238, 238, 238), 0.3);
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+
+    @include desktop {
+      display: flex;
+    }
+
+    &__card {
+      width: 100%;
+      border-radius: 15px;
+      margin-bottom: 10px;
+      box-shadow: 0 1px 3px rgba(#000, 0.1);
+      background: linear-gradient(100deg, #fbfbfb 65%, #f5f5f5 50%);
+      display: flex;
+      justify-content: space-between;
+      padding: 5px;
+
+      @include desktop {
+        width: 31%;
+      }
+
+      .details {
+        padding-left: 20px;
+        padding-top: 10px;
+        .header {
+          padding-top: 10px;
+          font-weight: 300;
+          font-size: 0.85rem;
+        }
+        .value {
+          text-align: center;
+          padding-top: 6px;
+          font-size: 1.1rem;
+          @include desktop {
+            font-size: 1.5rem;
+          }
+        }
+      }
+      .icon {
+        border-radius: 10px;
+        padding: 10px;
+        &.yellow {
+          background: $yellow;
+        }
+        &.red {
+          background: #ff6767;
+        }
+        &.green {
+          background: #54ea8e;
+        }
+        img {
+          width: 64px;
+          height: 64px;
+        }
+      }
+    }
+    .admin-sales {
+      width: 100%;
+      @include desktop {
+        width: 66%;
+      }
+    }
+    .prod-cat-summary {
+      width: 100%;
+      margin-top: 10px;
+      @include desktop {
+        width: 32%;
+        margin-top: 0;
+      }
+      & .summary__card {
+        width: 100%;
+        margin-bottom: 10px;
+      }
+    }
+  }
+
+  .pagination {
+    display: flex;
+    justify-content: center;
+    margin: 40px 0 10px;
+    button {
+      margin-right: 5px;
+      padding: 5px 10px;
+      border-radius: 3px;
+      background: $dark-blue;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      color: #f1f1f1;
+      &:disabled {
+        background: #fbfbfb;
+        border: 1px solid #ddd;
+        color: #d0d0cf;
+      }
+      @include retina {
+        padding: 5px 10px;
+        font-size: 0.8rem;
+      }
+    }
+  }
+}

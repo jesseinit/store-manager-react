@@ -48,7 +48,6 @@ export class LoginForm extends Component {
             {loginErrors.length ? <ErrorToast errors={loginErrors} /> : null}
             <div className="form__control">
               <input
-                // eslint-disable-next-line jsx-a11y/no-autofocus
                 autoFocus
                 type="email"
                 id="login-email"
@@ -73,7 +72,6 @@ export class LoginForm extends Component {
             </div>
             <div className="form__control">
               <button
-                onFocus={this.clearErrors}
                 onClick={this.handleClick}
                 type="submit"
                 className="btn btn--gradient full-width"

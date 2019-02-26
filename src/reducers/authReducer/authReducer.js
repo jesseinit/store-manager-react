@@ -23,7 +23,7 @@ const authReducer = (state = initialAuthState, { type, payload }) => {
     case USER_LOGIN_ERROR:
       return { ...state, loginErrors: [...payload], isLoading: false };
     case USER_LOGIN_SUCCESS:
-      return { ...state, ...payload, loginErrors: [] };
+      return { ...state, ...payload, loginErrors: [], isLoading: false };
     case CLEAR_LOGIN_ERRORS:
       return { ...state, loginErrors: [] };
     case USER_LOGGED_OUT:

@@ -17,6 +17,8 @@
     "import/no-extraneous-dependencies": ["error", { "devDependencies": true }],
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
     "no-underscore-dangle": "off",
-    "no-return-assign": "off"
+    "no-return-assign": "off",
+    "jsx-a11y/no-autofocus": "off",
+    "react/no-array-index-key": "off"
   }
 }

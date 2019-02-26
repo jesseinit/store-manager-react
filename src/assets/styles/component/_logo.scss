@@ -1,4 +1,6 @@
 .logo {
+  padding: 10px;
+  background: transparentize(#000, 0.6);
   color: #fff;
   font-size: 1rem;
   @include desktop {
