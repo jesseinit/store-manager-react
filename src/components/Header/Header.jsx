@@ -38,7 +38,7 @@ export const Header = ({ auth: { userRole }, logOutUser }) => {
   return (
     <header id="site-header" className="row">
       <a className="logo" href="./">
-        Store Manager
+        SM
       </a>
       <nav className="top-nav">
         <ul>{menuItems}</ul>
@@ -49,20 +49,26 @@ export const Header = ({ auth: { userRole }, logOutUser }) => {
 
 Header.propTypes = {
   auth: PropTypes.shape({
-    userRole: PropTypes.string
+    userRole: PropTypes.string,
+    isAuthenticated: PropTypes.bool
   }),
   logOutUser: PropTypes.func.isRequired
 };
 
 Header.defaultProps = {
   auth: {
-    userRole: ''
+    userRole: '',
+    isAuthenticated: false
   }
 };
+
+const mapStateToProps = state => ({
+  auth: state.auth
+});
 
 const mapActionToProps = { logOutUser: authActions.logOutUser };
 
 export default connect(
-  null,
+  mapStateToProps,
   mapActionToProps
 )(Header);

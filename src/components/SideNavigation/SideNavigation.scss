@@ -1,0 +1,62 @@
+@import '../../assets/styles/abstract/index';
+
+.aside {
+  display: flex;
+  margin-top: 20px;
+  background: #eee;
+  box-shadow: 0px 4.71062px 23.5531px rgba(0, 0, 0, 0.07);
+  overflow-x: scroll;
+
+  @include desktop {
+    width: 20%;
+    display: block;
+    overflow-x: unset;
+  }
+
+  &__nav {
+    width: 100%;
+
+    ul {
+      display: flex;
+      @include desktop {
+        display: block;
+      }
+
+      li {
+        width: 50%;
+        @include desktop {
+          width: 100%;
+        }
+
+        a {
+          display: block;
+          padding: 15px 15px;
+          color: #2c363b;
+          font-size: 0.7rem;
+          text-align: center;
+          @include desktop {
+            text-align: left;
+            font-size: 0.9rem;
+          }
+          @include retina {
+            font-size: 1rem;
+          }
+
+          &:hover {
+            background: #1d3a5f;
+            color: #fff;
+          }
+
+          &.selected {
+            background: #1d3a5f;
+            color: #fff;
+            border-left: 5px solid $orange;
+            &:hover {
+              background: #1d3a5f;
+            }
+          }
+        }
+      }
+    }
+  }
+}
