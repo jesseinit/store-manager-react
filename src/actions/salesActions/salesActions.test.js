@@ -9,7 +9,7 @@ import {
   populateDashboard,
   populateSales
 } from './salesActions';
-import { logOutUser, USER_LOGGED_OUT } from '../authActions/authActions';
+import { USER_LOGGED_OUT } from '../authActions/authActions';
 
 const mock = new MockAdapter(apiInstance);
 const mockStore = configureMockStore([thunk]);

@@ -70,7 +70,6 @@ export class DashboardContent extends Component {
               <img src={productSoldIcon} alt="card-icon" />
             </div>
           </div>
-
           <div className="summary__card">
             <div className="details">
               <p className="header">Product Worth Sold</p>

@@ -1,10 +1,10 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import NotFound from './NotFound';
 
 describe('<NotFound />', () => {
   test('should render successfully withour crashing', () => {
-    const wrapper = shallow(<NotFound />);
+    const wrapper = mount(<NotFound />);
     expect(wrapper).toMatchSnapshot();
   });
 });

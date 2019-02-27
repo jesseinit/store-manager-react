@@ -11,15 +11,15 @@ const NotFound = () => {
       </Helmet>
       <header id="site-header" className="row">
         <a className="logo" href="./">
-          Store Manager
+          SM
         </a>
       </header>
       <div className="notfound">
         <img className="404Image" src={notFoundIcon} alt="404_image" />
         <h1>Sorry! The page you are looking for does not exist yet!</h1>
-        <p>
-          <a href="/">Go back home</a>
-        </p>
+        <button type="button" className="goBackBtn" onClick={() => history.back()}>
+          Go back
+        </button>
       </div>
     </>
   );

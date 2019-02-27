@@ -13,7 +13,19 @@
     margin-bottom: 20px;
   }
 
-  p {
-    padding: 50px;
+  .goBackBtn {
+    margin-top: 10px;
+    padding: 10px;
+    font-size: 1rem;
+    background: #4198ff;
+    color: #fff;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    border-radius: 3px;
+    &:hover {
+      background: transparentize($color: #4198ff, $amount: 0.2);
+      transform: scale(1.1);
+    }
   }
 }
