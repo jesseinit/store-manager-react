@@ -25,7 +25,8 @@ describe('User Reducer', () => {
   test('should dispatch CREATE_USERS_SUCCESS with the right payload', () => {
     const expectedPayload = {
       ...initalState,
-      users: [...initalState.users, []]
+      users: [...initalState.users, []],
+      modalLoading: false
     };
     expect(userReducer(initalState, { type: CREATE_USERS_SUCCESS, payload: [] })).toEqual(expectedPayload);
   });

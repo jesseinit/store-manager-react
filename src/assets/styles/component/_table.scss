@@ -49,10 +49,16 @@
       &.red {
         background: #ea5454;
         color: #fff;
+        &:hover {
+          background: darken(#ea5454, 10%);
+        }
       }
       &.blue {
         background: #4297ff;
         color: #fff;
+        &:hover {
+          background: darken(#4297ff, 10%);
+        }
       }
       @include retina {
         font-size: 0.8rem;

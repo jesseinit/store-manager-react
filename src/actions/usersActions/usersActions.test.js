@@ -6,6 +6,7 @@ import {
   CREATE_USERS_FAILURE,
   CREATE_USERS_SUCCESS,
   GET_USERS,
+  CREATE_USERS_START,
   USERS_LOADING,
   getUsers,
   createUser,
@@ -95,8 +96,8 @@ describe('User Actions', () => {
 
     const expectedAction = [
       {
-        type: USERS_LOADING,
-        payload: { isLoading: true }
+        type: CREATE_USERS_START,
+        payload: true
       },
       {
         type: CREATE_USERS_SUCCESS,

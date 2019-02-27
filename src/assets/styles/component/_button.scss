@@ -26,6 +26,10 @@
 
   &--orange {
     background: $orange;
+    cursor: pointer;
+    &:hover {
+      background: darken($orange, 10%);
+    }
   }
 
   &:disabled {
