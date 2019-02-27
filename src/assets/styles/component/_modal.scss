@@ -45,8 +45,9 @@
     .input-file {
       width: 100%;
     }
+
     form {
-      padding: 20px;
+      padding: 15px;
     }
 
     h3 {
@@ -67,17 +68,22 @@
     label {
       text-align: left;
       margin-right: 5px;
-      font-size: 0.9rem;
+      font-size: 0.8rem;
       width: 50%;
     }
 
     input,
     select {
-      margin: 3px;
+      margin: 3px 0;
+      border-radius: 3px;
       width: 100%;
-      padding: 15px 10px;
+      padding: 10px 10px;
       border: 1px solid #c2c2c2;
       outline: none;
+      font-size: 0.8rem;
+      @include desktop {
+        font-size: 0.9rem;
+      }
       @include retina {
         font-size: 1rem;
       }
@@ -88,7 +94,6 @@
 
     select {
       padding-right: 20px;
-      border-radius: 0;
       background: url('../img/select_dropdown.png') 95% 50% no-repeat;
       background-size: 10px 10px;
       -webkit-appearance: none;
@@ -96,11 +101,12 @@
     }
 
     button {
+      margin-top: 5px;
       padding: 7px 15px;
       border: none;
       border-radius: 3px;
       outline: none;
-      font-weight: bold;
+      font-weight: 300;
       cursor: pointer;
 
       @include retina {

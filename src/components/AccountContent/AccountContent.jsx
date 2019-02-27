@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import * as usersActions from '../../actions/usersActions/usersActions';
 import Loading from '../Loading/Loading';
 import Spinner from '../Spinner/Spinner';
+import ErrorToast from '../ErrorToast/ErrorToast';
 
 export class AccountContent extends Component {
   constructor(props) {
@@ -28,12 +29,14 @@ export class AccountContent extends Component {
   }
 
   closeModal() {
+    const { clearModalErrors } = this.props;
     this.setState({ modalIsOpen: false });
+    clearModalErrors();
   }
 
   handleUserCreation(e) {
-    const { createUser } = this.props;
     e.preventDefault();
+    const { createUser } = this.props;
     const name = this.staffName.value;
     const email = this.staffEmail.value;
     const password = this.staffPassword.value;
@@ -51,7 +54,7 @@ export class AccountContent extends Component {
 
   render() {
     const {
-      users: { isLoading, users }
+      users: { isLoading, users, createErrors, modalLoading }
     } = this.props;
 
     if (isLoading) {
@@ -78,32 +81,20 @@ export class AccountContent extends Component {
                 &times;
               </span>
               <form id="create-user-form" onSubmit={this.handleUserCreation}>
+                {createErrors.length ? <ErrorToast errors={createErrors} /> : null}
                 <div className="input-group">
                   <label htmlFor="staff-name">Employee Name</label>
-                  <input
-                    type="text"
-                    id="staff-name"
-                    placeholder="Employee Name"
-                    required
-                    ref={staffName => (this.staffName = staffName)}
-                  />
+                  <input type="text" id="staff-name" required ref={staffName => (this.staffName = staffName)} />
                 </div>
                 <div className="input-group">
                   <label htmlFor="staff-email">Employee Email:</label>
-                  <input
-                    type="email"
-                    id="staff-email"
-                    placeholder="Employee Email"
-                    required
-                    ref={staffEmail => (this.staffEmail = staffEmail)}
-                  />
+                  <input type="email" id="staff-email" required ref={staffEmail => (this.staffEmail = staffEmail)} />
                 </div>
                 <div className="input-group">
-                  <label htmlFor="staff-password">Product Password:</label>
+                  <label htmlFor="staff-password">Employee Password:</label>
                   <input
                     type="password"
                     id="staff-password"
-                    placeholder="Password"
                     required
                     ref={staffPassword => (this.staffPassword = staffPassword)}
                   />
@@ -116,8 +107,8 @@ export class AccountContent extends Component {
                   </select>
                 </div>
                 <div className="input-group">
-                  <button type="submit" className="btn btn--gradient full-width">
-                    {isLoading ? <Spinner /> : 'Create User'}
+                  <button type="submit" disabled={modalLoading ? true : null} className="btn btn--gradient full-width">
+                    {modalLoading ? <Spinner /> : 'Create User'}
                   </button>
                 </div>
               </form>
@@ -164,7 +155,11 @@ const mapStateToProp = state => ({
   users: state.users
 });
 
-const mapActionsToProp = { getUsers: usersActions.getUsers, createUser: usersActions.createUser };
+const mapActionsToProp = {
+  getUsers: usersActions.getUsers,
+  createUser: usersActions.createUser,
+  clearModalErrors: usersActions.clearModalErrors
+};
 
 export default connect(
   mapStateToProp,

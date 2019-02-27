@@ -8,10 +8,13 @@ describe('<AccountContent />', () => {
     auth: {},
     users: {
       users: [{ id: '1', name: 'Jesse', email: 'email@email.com', role: 'Admin' }],
-      isLoading: false
+      isLoading: false,
+      modalLoading: false,
+      createErrors: []
     },
     getUsers: jest.fn(),
-    createUser: jest.fn()
+    createUser: jest.fn(),
+    clearModalErrors: jest.fn()
   };
 
   test('should render successfully withour crashing', () => {

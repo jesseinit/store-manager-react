@@ -10,11 +10,12 @@
   }
 
   & li {
+    text-align: left;
     font-size: 0.8rem;
-    list-style-type: disc;
-    list-style-position: inside;
+    /* list-style-type: disc;
+    list-style-position: inside; */
     @include desktop {
-      font-size: 0.93rem;
+      font-size: 0.83rem;
     }
   }
 }
