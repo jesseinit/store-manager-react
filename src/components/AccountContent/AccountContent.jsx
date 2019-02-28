@@ -1,22 +1,23 @@
 import React, { Component } from 'react';
-import Modal from 'react-modal';
 import { connect } from 'react-redux';
+import { ToastProvider } from 'react-toast-notifications';
+import PropTypes from 'prop-types';
 import * as usersActions from '../../actions/usersActions/usersActions';
 import Loading from '../Loading/Loading';
-import Spinner from '../Spinner/Spinner';
-import ErrorToast from '../ErrorToast/ErrorToast';
+import UpdateUserModal from '../Modals/UpdateUserModal';
+import Toasts from '../Toasts/Toasts';
+import AccountRow from '../AccountRow/AccountRow';
+import CreateUserModal from '../Modals/CreateUserModal';
 
 export class AccountContent extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      modalIsOpen: false
+      userData: {},
+      setCreateModalOpen: false,
+      updateModalIsOpen: false
     };
-
-    this.openModal = this.openModal.bind(this);
-    this.closeModal = this.closeModal.bind(this);
-    this.handleUserCreation = this.handleUserCreation.bind(this);
   }
 
   componentDidMount() {
@@ -24,96 +25,55 @@ export class AccountContent extends Component {
     getUsers();
   }
 
-  openModal() {
-    this.setState({ modalIsOpen: true });
-  }
+  openUpdateModal = userData => {
+    this.setState({ updateModalIsOpen: true, userData });
+  };
 
-  closeModal() {
-    const { clearModalErrors } = this.props;
-    this.setState({ modalIsOpen: false });
-    clearModalErrors();
-  }
+  openModal = () => {
+    this.setState({ setCreateModalOpen: true });
+  };
 
-  handleUserCreation(e) {
-    e.preventDefault();
-    const { createUser } = this.props;
-    const name = this.staffName.value;
-    const email = this.staffEmail.value;
-    const password = this.staffPassword.value;
-    const role = this.staffRole.value;
-    createUser(
-      {
-        name,
-        email,
-        password,
-        role
-      },
-      () => this.setState({ modalIsOpen: false })
-    );
-  }
+  closeModal = () => {
+    const {
+      clearModalErrors,
+      users: { modalErrors }
+    } = this.props;
+    this.setState({ setCreateModalOpen: false, updateModalIsOpen: false });
+    if (modalErrors.length) clearModalErrors();
+  };
 
   render() {
     const {
-      users: { isLoading, users, createErrors, modalLoading }
+      users: { isLoading, users, modalErrors, modalLoading, actionMessage },
+      updateUser,
+      clearModalErrors
     } = this.props;
+
+    const { modalIsOpen, updateModalIsOpen, userData } = this.state;
 
     if (isLoading) {
       return <Loading />;
     }
+
     return (
       <div className="main">
         <section className="sales">
           <button type="button" className="btn btn--orange" id="show-user-modal" onClick={this.openModal}>
             Create User
           </button>
-          <Modal
-            isOpen={this.state.modalIsOpen}
-            onAfterOpen={this.afterOpenModal}
-            onRequestClose={this.closeModal}
-            shouldCloseOnEsc
-            ariaHideApp={false}
-            contentLabel="Example Modal"
-            className="modal"
-          >
-            <div className="form-body">
-              <h3>Create New User</h3>
-              <span role="link" className="form__closeBtn" onClick={this.closeModal}>
-                &times;
-              </span>
-              <form id="create-user-form" onSubmit={this.handleUserCreation}>
-                {createErrors.length ? <ErrorToast errors={createErrors} /> : null}
-                <div className="input-group">
-                  <label htmlFor="staff-name">Employee Name</label>
-                  <input type="text" id="staff-name" required ref={staffName => (this.staffName = staffName)} />
-                </div>
-                <div className="input-group">
-                  <label htmlFor="staff-email">Employee Email:</label>
-                  <input type="email" id="staff-email" required ref={staffEmail => (this.staffEmail = staffEmail)} />
-                </div>
-                <div className="input-group">
-                  <label htmlFor="staff-password">Employee Password:</label>
-                  <input
-                    type="password"
-                    id="staff-password"
-                    required
-                    ref={staffPassword => (this.staffPassword = staffPassword)}
-                  />
-                </div>
-                <div className="input-group">
-                  <label htmlFor="staff-role">Select Role:</label>
-                  <select id="staff-role" ref={staffRole => (this.staffRole = staffRole)}>
-                    <option value="Attendant">Attendant</option>
-                    <option value="Admin">Admin</option>
-                  </select>
-                </div>
-                <div className="input-group">
-                  <button type="submit" disabled={modalLoading ? true : null} className="btn btn--gradient full-width">
-                    {modalLoading ? <Spinner /> : 'Create User'}
-                  </button>
-                </div>
-              </form>
-            </div>
-          </Modal>
+
+          <ToastProvider placement="top-center" transitionDuration={300} autoDismissTimeout={3000}>
+            <Toasts content={actionMessage || null} />
+          </ToastProvider>
+
+          <CreateUserModal
+            modalOpenState={this.state.setCreateModalOpen}
+            closeModal={this.closeModal}
+            modalErrors={modalErrors}
+            modalLoading={modalLoading}
+            {...this.props}
+          />
+
           <div className="table-wrapper no-flow">
             <table id="users-table" className="table">
               <thead>
@@ -127,29 +87,36 @@ export class AccountContent extends Component {
               </thead>
               <tbody>
                 {users.map(user => (
-                  <tr key={user.id}>
-                    <td>{user.id}</td>
-                    <td>{user.name}</td>
-                    <td>{user.email}</td>
-                    <td>{user.role}</td>
-                    <td data-id={user.id}>
-                      <button type="button" className="blue">
-                        Update
-                      </button>
-                      <button type="button" className="red">
-                        Delete
-                      </button>
-                    </td>
-                  </tr>
+                  <AccountRow
+                    key={user.id}
+                    user={user}
+                    modalState={modalIsOpen}
+                    openUpdateModal={this.openUpdateModal}
+                  />
                 ))}
               </tbody>
             </table>
           </div>
+          <UpdateUserModal
+            modalState={updateModalIsOpen}
+            user={userData}
+            closeModal={this.closeModal}
+            updateUser={updateUser}
+            modalErrors={modalErrors}
+            clearModalErrors={clearModalErrors}
+            modalLoading={modalLoading}
+          />
         </section>
       </div>
     );
   }
 }
+
+AccountContent.propTypes = {
+  users: PropTypes.oneOfType([PropTypes.object]).isRequired,
+  updateUser: PropTypes.func.isRequired,
+  clearModalErrors: PropTypes.func.isRequired
+};
 
 const mapStateToProp = state => ({
   users: state.users
@@ -158,7 +125,8 @@ const mapStateToProp = state => ({
 const mapActionsToProp = {
   getUsers: usersActions.getUsers,
   createUser: usersActions.createUser,
-  clearModalErrors: usersActions.clearModalErrors
+  clearModalErrors: usersActions.clearModalErrors,
+  updateUser: usersActions.updateUser
 };
 
 export default connect(

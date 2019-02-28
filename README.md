@@ -9,7 +9,7 @@ Store Manager is a web application that helps store owners manage sales and prod
 
 ## App Links
 
-> [Store Maneger App](https://mystoremanager.herokuapp.com).
+> [Store Maneger App](https://storemanagerly.herokuapp.com).
 
 > [App Documentation](https://mystoremanager.herokuapp.com/docs).
 

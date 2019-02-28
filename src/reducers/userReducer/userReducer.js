@@ -1,9 +1,11 @@
 import {
   GET_USERS,
   CREATE_USERS_SUCCESS,
+  UPDATE_USERS_SUCCESS,
   USERS_LOADING,
   CREATE_USERS_FAILURE,
   CREATE_USERS_START,
+  UPDATE_USERS_START,
   CLEAR_MODAL_ERRORS
 } from '../../actions/usersActions/usersActions';
 
@@ -12,7 +14,7 @@ const initalState = {
   actionMessage: '',
   isLoading: false,
   modalLoading: false,
-  createErrors: []
+  modalErrors: []
 };
 
 const userReducer = (state = initalState, { type, payload }) => {
@@ -21,14 +23,18 @@ const userReducer = (state = initalState, { type, payload }) => {
       return { ...state, ...payload };
     case CREATE_USERS_START:
       return { ...state, modalLoading: payload };
+    case UPDATE_USERS_START:
+      return { ...state, modalLoading: payload };
+    case UPDATE_USERS_SUCCESS:
+      return { ...state, ...payload };
     case CLEAR_MODAL_ERRORS:
-      return { ...state, createErrors: [] };
+      return { ...state, modalErrors: [] };
     case GET_USERS:
       return { ...state, ...payload };
     case CREATE_USERS_FAILURE:
-      return { ...state, createErrors: [...payload], modalLoading: false };
+      return { ...state, modalErrors: [...payload], modalLoading: false };
     case CREATE_USERS_SUCCESS:
-      return { ...state, users: [...state.users, payload], modalLoading: false };
+      return { ...state, users: [...state.users, payload.data], actionMessage: payload.message, modalLoading: false };
     default:
       return state;
   }
