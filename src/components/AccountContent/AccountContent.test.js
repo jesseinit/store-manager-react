@@ -10,10 +10,11 @@ describe('<AccountContent />', () => {
       users: [{ id: '1', name: 'Jesse', email: 'email@email.com', role: 'Admin' }],
       isLoading: false,
       modalLoading: false,
-      createErrors: []
+      modalErrors: []
     },
     getUsers: jest.fn(),
     createUser: jest.fn(),
+    updateUser: jest.fn(),
     clearModalErrors: jest.fn()
   };
 
@@ -32,13 +33,16 @@ describe('<AccountContent />', () => {
     props.users.isLoading = false;
     const wrapper = mount(<AccountContent {...props} />);
     wrapper.find('#show-user-modal').simulate('click');
-    expect(wrapper.state('modalIsOpen')).toEqual(true);
+    expect(wrapper.state('setCreateModalOpen')).toEqual(true);
   });
 
   test('should close modal when modal close button is clicked', () => {
     const wrapper = mount(<AccountContent {...props} />);
-    wrapper.find('Modal').prop('onRequestClose')();
-    expect(wrapper.state('modalIsOpen')).toEqual(false);
+    wrapper
+      .find('Modal')
+      .at(0)
+      .prop('onRequestClose')();
+    expect(wrapper.state('setCreateModalOpen')).toEqual(false);
   });
 
   test('should submit modal form and call the action creator', () => {

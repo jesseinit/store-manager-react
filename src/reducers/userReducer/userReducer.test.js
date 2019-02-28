@@ -26,8 +26,11 @@ describe('User Reducer', () => {
     const expectedPayload = {
       ...initalState,
       users: [...initalState.users, []],
-      modalLoading: false
+      modalLoading: false,
+      actionMessage: ''
     };
-    expect(userReducer(initalState, { type: CREATE_USERS_SUCCESS, payload: [] })).toEqual(expectedPayload);
+    expect(userReducer(initalState, { type: CREATE_USERS_SUCCESS, payload: { data: [], message: '' } })).toEqual(
+      expectedPayload
+    );
   });
 });

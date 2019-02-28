@@ -10,7 +10,12 @@ import {
   USERS_LOADING,
   getUsers,
   createUser,
-  userLoading
+  userLoading,
+  UPDATE_USERS_START,
+  UPDATE_USERS_SUCCESS,
+  updateUser,
+  CLEAR_MODAL_ERRORS,
+  clearModalErrors
 } from './usersActions';
 
 const mock = new MockAdapter(apiInstance);
@@ -87,7 +92,8 @@ describe('User Actions', () => {
 
   test('should dispatch CREATE_USERS_SUCCESS when admin creates an account', () => {
     const mockPayload = {
-      data: {}
+      data: {},
+      message: ''
     };
     const closeModalMock = (() => jest.fn())();
     const userDetails = {};
@@ -101,12 +107,41 @@ describe('User Actions', () => {
       },
       {
         type: CREATE_USERS_SUCCESS,
-        payload: mockPayload.data
+        payload: { data: mockPayload.data, message: mockPayload.message }
       }
     ];
 
     store.dispatch(createUser(userDetails, closeModalMock)).then(() => {
       expect(closeModalMock).toBeCalled();
+      expect(store.getActions()).toEqual(expectedAction);
+    });
+  });
+
+  test('should dispatch CREATE_USERS_FAILURE for server errors when admin tries to creates an account', () => {
+    const mockPayload = {
+      data: {
+        error: [],
+        message: ''
+      }
+    };
+    const closeModalMock = (() => jest.fn())();
+    const userDetails = {};
+
+    mock.onPost('/auth/signup').reply(500, mockPayload);
+
+    const expectedAction = [
+      {
+        type: CREATE_USERS_START,
+        payload: true
+      },
+      {
+        type: CREATE_USERS_FAILURE,
+        payload: { data: mockPayload.data, message: mockPayload.message }
+      }
+    ];
+
+    store.dispatch(createUser(userDetails, closeModalMock)).catch(() => {
+      expect('').toEqual(true);
       expect(store.getActions()).toEqual(expectedAction);
     });
   });
@@ -134,5 +169,46 @@ describe('User Actions', () => {
     store.dispatch(createUser(userDetails)).catch(() => {
       expect(store.getActions()).toEqual(expectedAction);
     });
+  });
+
+  /* test('should dispatch UPDATE_USERS_SUCCESS for successful user update', () => {
+    const putMockPayload = {
+      message: 'Update Success',
+      data: []
+    };
+
+    const closeModalMock = (() => jest.fn())();
+    const userDetails = {
+      id: 1
+    };
+
+    mock.onPut(`/users/${userDetails.id}`).reply(200, putMockPayload);
+    mock.onGet('/users/').reply(200, putMockPayload);
+
+    const expectedAction = [
+      {
+        type: UPDATE_USERS_START,
+        payload: true
+      },
+      {
+        type: UPDATE_USERS_SUCCESS,
+        payload: { users: putMockPayload.data, actionMessage: putMockPayload.message, modalLoading: false }
+      }
+    ];
+
+    store.dispatch(updateUser(userDetails, closeModalMock)).then(() => {
+      expect(store.getActions()).toEqual(expectedAction);
+    });
+  }); */
+
+  test('should dispatch CLEAR_MODAL_ERRORS with no payload', () => {
+    const expectedAction = [
+      {
+        type: CLEAR_MODAL_ERRORS
+      }
+    ];
+
+    store.dispatch(clearModalErrors());
+    expect(store.getActions()).toEqual(expectedAction);
   });
 });

@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 const ErrorToast = ({ errors }) => {
   return (
     <ul className="errors">
-      {errors.map(error => {
-        return <li key={Date.now()}>{error}</li>;
+      {errors.map((error, index) => {
+        return <li key={index}>{error}</li>;
       })}
     </ul>
   );
