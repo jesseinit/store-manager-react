@@ -59,7 +59,7 @@ export class AccountContent extends Component {
     const { modalIsOpen, updateModalIsOpen, userData, deleteModalIsOpen } = this.state;
 
     if (isLoading) {
-      return <Loading />;
+      return <Loading title="Retrieving Accounts" />;
     }
 
     return (

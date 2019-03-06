@@ -42,6 +42,7 @@
       height: 40px;
       font-size: 1rem;
       padding: 10px 15px;
+      font-weight: 300;
       @include desktop {
         width: 500px;
       }
@@ -74,8 +75,8 @@
       color: #fff;
       font-size: 1rem;
       font-weight: 400;
-      border-top-right-radius: 3px;
-      border-bottom-right-radius: 3px;
+      border-top-right-radius: 1px;
+      border-bottom-right-radius: 1px;
       &:hover {
         background: lighten($dark-blue, 5%);
         cursor: pointer;
@@ -87,11 +88,20 @@
   }
 
   .no-result {
-    font-size: 0.9rem;
-    text-align: center;
-    margin-bottom: 20px;
-    @include desktop {
-      font-size: 1.18rem;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+
+    background: url('../../assets/img/empty-catalog.svg') no-repeat;
+    background-size: 150px;
+    background-position: center;
+    & h3 {
+      font-size: 0.9rem;
+      text-align: center;
+      margin-top: 50px;
+      @include desktop {
+        font-size: 1.18rem;
+      }
     }
   }
 
@@ -193,7 +203,7 @@
   .pagination {
     display: flex;
     justify-content: center;
-    margin: 40px 0 10px;
+    margin: 20px 0 10px;
     button {
       margin-right: 5px;
       padding: 5px 10px;

@@ -42,7 +42,7 @@ export class DashboardContent extends Component {
     }
 
     if (isLoading) {
-      return <Loading />;
+      return <Loading title="Populating Dashboard" />;
     }
 
     return (

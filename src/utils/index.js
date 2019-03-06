@@ -31,4 +31,7 @@ export default class Util {
       .reverse()
       .join('/');
   }
+
+  static formatPrice = number =>
+    new Intl.NumberFormat('en-US', { style: 'decimal', minimumFractionDigits: 2 }).format(number);
 }
