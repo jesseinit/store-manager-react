@@ -10,6 +10,12 @@
   }
 }
 
+@mixin mob-land {
+  @media (min-width: #{$mobile-landscape}) {
+    @content;
+  }
+}
+
 @mixin retina {
   @media (min-width: #{$retina-width}) {
     @content;

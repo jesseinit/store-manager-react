@@ -9,7 +9,7 @@ Store Manager is a web application that helps store owners manage sales and prod
 
 ## App Links
 
-> [Store Maneger App](https://storemanagerly.herokuapp.com).
+> [Store Manager App](https://storemanagerly.herokuapp.com).
 
 > [App Documentation](https://mystoremanager.herokuapp.com/docs).
 
@@ -29,7 +29,7 @@ Store Manager is a web application that helps store owners manage sales and prod
 
 ## Project Management
 
-Project is managed [here](https://www.pivotaltracker.com/n/projects/2204201) using the project management tool, [Pivotal Tracker](https://www.pivotaltracker.com).
+Project is managed [here](https://www.pivotaltracker.com/n/projects/2313384) using the project management tool, [Pivotal Tracker](https://www.pivotaltracker.com).
 
 ## Templates
 

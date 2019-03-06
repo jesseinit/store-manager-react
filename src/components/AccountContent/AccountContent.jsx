@@ -8,6 +8,7 @@ import UpdateUserModal from '../Modals/UpdateUserModal';
 import Toasts from '../Toasts/Toasts';
 import AccountRow from '../AccountRow/AccountRow';
 import CreateUserModal from '../Modals/CreateUserModal';
+import DeleteModal from '../Modals/DeleteModal';
 
 export class AccountContent extends Component {
   constructor(props) {
@@ -16,7 +17,8 @@ export class AccountContent extends Component {
     this.state = {
       userData: {},
       setCreateModalOpen: false,
-      updateModalIsOpen: false
+      updateModalIsOpen: false,
+      deleteModalIsOpen: false
     };
   }
 
@@ -29,6 +31,10 @@ export class AccountContent extends Component {
     this.setState({ updateModalIsOpen: true, userData });
   };
 
+  openDeleteModal = userData => {
+    this.setState({ deleteModalIsOpen: true, userData });
+  };
+
   openModal = () => {
     this.setState({ setCreateModalOpen: true });
   };
@@ -38,7 +44,7 @@ export class AccountContent extends Component {
       clearModalErrors,
       users: { modalErrors }
     } = this.props;
-    this.setState({ setCreateModalOpen: false, updateModalIsOpen: false });
+    this.setState({ setCreateModalOpen: false, updateModalIsOpen: false, deleteModalIsOpen: false });
     if (modalErrors.length) clearModalErrors();
   };
 
@@ -46,10 +52,11 @@ export class AccountContent extends Component {
     const {
       users: { isLoading, users, modalErrors, modalLoading, actionMessage },
       updateUser,
+      deleteUser,
       clearModalErrors
     } = this.props;
 
-    const { modalIsOpen, updateModalIsOpen, userData } = this.state;
+    const { modalIsOpen, updateModalIsOpen, userData, deleteModalIsOpen } = this.state;
 
     if (isLoading) {
       return <Loading />;
@@ -58,7 +65,7 @@ export class AccountContent extends Component {
     return (
       <div className="main">
         <section className="sales">
-          <button type="button" className="btn btn--orange" id="show-user-modal" onClick={this.openModal}>
+          <button type="button" className="btn btn--gradient" id="show-user-modal" onClick={this.openModal}>
             Create User
           </button>
 
@@ -92,6 +99,7 @@ export class AccountContent extends Component {
                     user={user}
                     modalState={modalIsOpen}
                     openUpdateModal={this.openUpdateModal}
+                    openDeleteModal={this.openDeleteModal}
                   />
                 ))}
               </tbody>
@@ -106,6 +114,15 @@ export class AccountContent extends Component {
             clearModalErrors={clearModalErrors}
             modalLoading={modalLoading}
           />
+          <DeleteModal
+            modalState={deleteModalIsOpen}
+            user={userData}
+            closeModal={this.closeModal}
+            deleteUser={deleteUser}
+            modalErrors={modalErrors}
+            clearModalErrors={clearModalErrors}
+            modalLoading={modalLoading}
+          />
         </section>
       </div>
     );
@@ -115,6 +132,7 @@ export class AccountContent extends Component {
 AccountContent.propTypes = {
   users: PropTypes.oneOfType([PropTypes.object]).isRequired,
   updateUser: PropTypes.func.isRequired,
+  deleteUser: PropTypes.func.isRequired,
   clearModalErrors: PropTypes.func.isRequired
 };
 
@@ -126,7 +144,8 @@ const mapActionsToProp = {
   getUsers: usersActions.getUsers,
   createUser: usersActions.createUser,
   clearModalErrors: usersActions.clearModalErrors,
-  updateUser: usersActions.updateUser
+  updateUser: usersActions.updateUser,
+  deleteUser: usersActions.deleteUser
 };
 
 export default connect(

@@ -97,7 +97,6 @@ class UpdateUserModal extends Component {
               <button type="submit" disabled={modalLoading ? true : null} className="btn btn--gradient full-width">
                 {modalLoading ? <Spinner /> : 'Update User'}
               </button>
-              {/* <input type="submit" value="Update User" className="btn btn--gradient full-width" /> */}
             </div>
           </form>
         </div>

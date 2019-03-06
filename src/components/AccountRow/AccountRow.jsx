@@ -1,6 +1,6 @@
 import React from 'react';
 
-const AccountRow = ({ user, modalState, openUpdateModal, closeModal }) => {
+const AccountRow = ({ user, modalState, openUpdateModal, openDeleteModal, closeModal }) => {
   return (
     <tr>
       <td>{user.id}</td>
@@ -11,9 +11,11 @@ const AccountRow = ({ user, modalState, openUpdateModal, closeModal }) => {
         <button type="button" className="blue" onClick={() => openUpdateModal(user)}>
           Update
         </button>
-        <button type="button" id="update-user" className="red">
-          Delete
-        </button>
+        {user.role === 'Owner' ? null : (
+          <button type="button" id="update-user" className="red" onClick={() => openDeleteModal(user)}>
+            Delete
+          </button>
+        )}
       </td>
     </tr>
   );

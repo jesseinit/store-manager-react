@@ -1,9 +1,31 @@
 .logo {
+  display: flex;
+  align-items: center;
   padding: 10px;
-  background: transparentize(#000, 0.6);
+  padding-left: 0;
   color: #fff;
   font-size: 1rem;
   @include desktop {
     font-size: 1.187rem;
+  }
+
+  .logoImage {
+    margin-right: 10px;
+    width: 30px;
+    height: 30px;
+  }
+
+  .logoText {
+    display: none;
+    @include mob-land {
+      font-size: 0.9rem;
+      display: block;
+    }
+    @include tab {
+      font-size: 1rem;
+    }
+    @include desktop {
+      font-size: 1.187rem;
+    }
   }
 }
