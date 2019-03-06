@@ -2,10 +2,10 @@ import {
   GET_USERS,
   CREATE_USERS_SUCCESS,
   UPDATE_USERS_SUCCESS,
+  DELETE_USERS_SUCCESS,
   USERS_LOADING,
   CREATE_USERS_FAILURE,
-  CREATE_USERS_START,
-  UPDATE_USERS_START,
+  USER_ACTION_START,
   CLEAR_MODAL_ERRORS
 } from '../../actions/usersActions/usersActions';
 
@@ -21,11 +21,11 @@ const userReducer = (state = initalState, { type, payload }) => {
   switch (type) {
     case USERS_LOADING:
       return { ...state, ...payload };
-    case CREATE_USERS_START:
-      return { ...state, modalLoading: payload };
-    case UPDATE_USERS_START:
+    case USER_ACTION_START:
       return { ...state, modalLoading: payload };
     case UPDATE_USERS_SUCCESS:
+      return { ...state, ...payload };
+    case DELETE_USERS_SUCCESS:
       return { ...state, ...payload };
     case CLEAR_MODAL_ERRORS:
       return { ...state, modalErrors: [] };

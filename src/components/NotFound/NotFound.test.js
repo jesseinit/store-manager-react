@@ -4,7 +4,7 @@ import NotFound from './NotFound';
 
 describe('<NotFound />', () => {
   test('should render successfully withour crashing', () => {
-    const wrapper = mount(<NotFound />);
+    const wrapper = shallow(<NotFound />);
     expect(wrapper).toMatchSnapshot();
   });
 });

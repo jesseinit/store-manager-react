@@ -114,6 +114,7 @@
       outline: none;
       font-weight: 300;
       cursor: pointer;
+      font-size: 1rem;
 
       @include retina {
         padding: 10px 15px;
@@ -123,16 +124,23 @@
       &#confirm-delete {
         color: #fff;
         background: #fa4e4e;
+        margin-right: 5px;
+        &:hover {
+          background: lighten(#fa4e4e, 10%);
+        }
+        &:disabled {
+          border: 1px solid #d1d1d1;
+          background: transparent;
+        }
+      }
+
+      &#cancel-action {
+        color: #000;
+        border: 1px solid #d1d1d1;
+        &:hover {
+          background: #f0f0f0;
+        }
       }
     }
-
-    /* input[type='submit'] {
-      border: none;
-      font-size: 1rem;
-      color: #fff;
-      background: $dark-blue;
-      box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
-      margin-top: 10px;
-    } */
   }
 }

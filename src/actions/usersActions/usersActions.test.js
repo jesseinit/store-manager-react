@@ -6,16 +6,13 @@ import {
   CREATE_USERS_FAILURE,
   CREATE_USERS_SUCCESS,
   GET_USERS,
-  CREATE_USERS_START,
   USERS_LOADING,
   getUsers,
   createUser,
   userLoading,
-  UPDATE_USERS_START,
-  UPDATE_USERS_SUCCESS,
-  updateUser,
   CLEAR_MODAL_ERRORS,
-  clearModalErrors
+  clearModalErrors,
+  USER_ACTION_START
 } from './usersActions';
 
 const mock = new MockAdapter(apiInstance);
@@ -102,7 +99,7 @@ describe('User Actions', () => {
 
     const expectedAction = [
       {
-        type: CREATE_USERS_START,
+        type: USER_ACTION_START,
         payload: true
       },
       {
@@ -131,7 +128,7 @@ describe('User Actions', () => {
 
     const expectedAction = [
       {
-        type: CREATE_USERS_START,
+        type: USER_ACTION_START,
         payload: true
       },
       {

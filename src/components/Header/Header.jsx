@@ -38,7 +38,12 @@ export const Header = ({ auth: { userRole }, logOutUser }) => {
   return (
     <header id="site-header" className="row">
       <a className="logo" href="./">
-        SM
+        <img
+          className="logoImage"
+          src="https://res.cloudinary.com/jesseinit/image/upload/v1551386309/store/smLogo.svg"
+          alt="logo"
+        />
+        <p className="logoText">Store Manager</p>
       </a>
       <nav className="top-nav">
         <ul>{menuItems}</ul>

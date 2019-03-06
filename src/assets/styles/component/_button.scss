@@ -4,15 +4,14 @@
   font-family: inherit;
   border: none;
   outline: none;
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   box-shadow: 0 1px 1px 1px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
   color: #fff;
-  padding: 8px;
+  padding: 10px;
   background: #eee;
 
   @include desktop {
-    padding: 10px;
     font-size: 1rem;
   }
 

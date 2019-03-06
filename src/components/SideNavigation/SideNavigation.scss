@@ -3,7 +3,7 @@
 .aside {
   display: flex;
   margin-top: 20px;
-  background: #eee;
+  background: #fbfbfb;
   box-shadow: 0px 4.71062px 23.5531px rgba(0, 0, 0, 0.07);
   overflow-x: scroll;
 
@@ -50,7 +50,11 @@
           &.selected {
             background: #1d3a5f;
             color: #fff;
-            border-left: 5px solid $orange;
+            border-bottom: 5px solid $orange;
+            @include desktop {
+              border: none;
+              border-left: 5px solid $orange;
+            }
             &:hover {
               background: #1d3a5f;
             }

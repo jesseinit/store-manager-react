@@ -1,3 +1,5 @@
+@import '../../assets/styles/abstract/index';
+
 .notfound {
   display: flex;
   flex-direction: column;
@@ -7,13 +9,22 @@
   align-items: center;
   padding: 200px 10% 0;
 
-  img {
-    width: 200px;
-    height: 200px;
-    margin-bottom: 20px;
+  &__message {
+    font-size: 1.2rem;
+    font-weight: 300;
   }
 
-  .goBackBtn {
+  &__image {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 20px;
+    @include mob-land {
+      width: 250px;
+      height: 250px;
+    }
+  }
+
+  &__button {
     margin-top: 10px;
     padding: 10px;
     font-size: 1rem;

@@ -10,11 +10,12 @@ describe('<AccountContent />', () => {
       users: [{ id: '1', name: 'Jesse', email: 'email@email.com', role: 'Admin' }],
       isLoading: false,
       modalLoading: false,
-      modalErrors: []
+      modalErrors: ['Jesse']
     },
     getUsers: jest.fn(),
     createUser: jest.fn(),
     updateUser: jest.fn(),
+    deleteUser: jest.fn(),
     clearModalErrors: jest.fn()
   };
 
