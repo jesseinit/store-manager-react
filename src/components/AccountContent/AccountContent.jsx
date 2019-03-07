@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { ToastProvider } from 'react-toast-notifications';
 import PropTypes from 'prop-types';
 import * as usersActions from '../../actions/usersActions/usersActions';
 import Loading from '../Loading/Loading';
 import UpdateUserModal from '../Modals/UpdateUserModal';
-import Toasts from '../Toasts/Toasts';
 import AccountRow from '../AccountRow/AccountRow';
 import CreateUserModal from '../Modals/CreateUserModal';
-import DeleteModal from '../Modals/DeleteModal';
+import DeleteModal from '../Modals/DeleteUserModal';
+import ToastContainer from '../Toasts/ToastContainer';
 
 export class AccountContent extends Component {
   constructor(props) {
@@ -56,7 +55,7 @@ export class AccountContent extends Component {
       clearModalErrors
     } = this.props;
 
-    const { modalIsOpen, updateModalIsOpen, userData, deleteModalIsOpen } = this.state;
+    const { updateModalIsOpen, userData, deleteModalIsOpen, setCreateModalOpen } = this.state;
 
     if (isLoading) {
       return <Loading title="Retrieving Accounts" />;
@@ -69,12 +68,10 @@ export class AccountContent extends Component {
             Create User
           </button>
 
-          <ToastProvider placement="top-center" transitionDuration={300} autoDismissTimeout={3000}>
-            <Toasts content={actionMessage || null} />
-          </ToastProvider>
+          <ToastContainer message={actionMessage} />
 
           <CreateUserModal
-            modalOpenState={this.state.setCreateModalOpen}
+            modalOpenState={setCreateModalOpen}
             closeModal={this.closeModal}
             modalErrors={modalErrors}
             modalLoading={modalLoading}
@@ -97,7 +94,6 @@ export class AccountContent extends Component {
                   <AccountRow
                     key={user.id}
                     user={user}
-                    modalState={modalIsOpen}
                     openUpdateModal={this.openUpdateModal}
                     openDeleteModal={this.openDeleteModal}
                   />
@@ -133,7 +129,8 @@ AccountContent.propTypes = {
   users: PropTypes.oneOfType([PropTypes.object]).isRequired,
   updateUser: PropTypes.func.isRequired,
   deleteUser: PropTypes.func.isRequired,
-  clearModalErrors: PropTypes.func.isRequired
+  clearModalErrors: PropTypes.func.isRequired,
+  getUsers: PropTypes.func.isRequired
 };
 
 const mapStateToProp = state => ({

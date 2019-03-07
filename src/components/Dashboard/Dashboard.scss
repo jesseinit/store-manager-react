@@ -111,12 +111,12 @@
     input[type='button'] {
       padding: 7px;
       border: none;
-      background: #4297fe;
+      background: #eee;
       box-shadow: 0 2px 3px rgba(#000, 0.1);
-      color: #fff;
+      color: #000;
+      margin-left: 5px;
       @include retina {
         padding: 5px;
-        margin-left: 5px;
       }
     }
   }

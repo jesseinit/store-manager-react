@@ -12,7 +12,9 @@ import {
   userLoading,
   CLEAR_MODAL_ERRORS,
   clearModalErrors,
-  USER_ACTION_START
+  USER_ACTION_START,
+  UPDATE_USERS_SUCCESS,
+  updateUser
 } from './usersActions';
 
 const mock = new MockAdapter(apiInstance);
@@ -169,22 +171,26 @@ describe('User Actions', () => {
   });
 
   /* test('should dispatch UPDATE_USERS_SUCCESS for successful user update', () => {
+    const closeModalMock = (() => jest.fn())();
+    const userDetails = {
+      id: 1,
+      name: 'Jesse'
+    };
+
     const putMockPayload = {
-      message: 'Update Success',
+      message: `${userDetails.name} was updated successfully`,
       data: []
     };
 
-    const closeModalMock = (() => jest.fn())();
-    const userDetails = {
-      id: 1
-    };
-
-    mock.onPut(`/users/${userDetails.id}`).reply(200, putMockPayload);
-    mock.onGet('/users/').reply(200, putMockPayload);
+    mock
+      .onPut(`/users/${userDetails.id}`)
+      .reply(200, putMockPayload)
+      .onGet('/users/')
+      .reply(200, putMockPayload);
 
     const expectedAction = [
       {
-        type: UPDATE_USERS_START,
+        type: USER_ACTION_START,
         payload: true
       },
       {

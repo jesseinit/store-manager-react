@@ -4,7 +4,7 @@ import { Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-export const AdminRoute = ({ component: Component, isAuthenticated, userRole, ...rest }) => {
+export const AttendantRoute = ({ component: Component, isAuthenticated, userRole, ...rest }) => {
   return (
     <Route
       {...rest}
@@ -18,13 +18,13 @@ export const AdminRoute = ({ component: Component, isAuthenticated, userRole, ..
   );
 };
 
-AdminRoute.propTypes = {
+AttendantRoute.propTypes = {
   component: PropTypes.func,
   isAuthenticated: PropTypes.bool,
   userRole: PropTypes.string
 };
 
-AdminRoute.defaultProps = {
+AttendantRoute.defaultProps = {
   component: null,
   isAuthenticated: false,
   userRole: ''
@@ -35,4 +35,4 @@ const mapStateToProps = state => ({
   userRole: state.auth.userRole
 });
 
-export default connect(mapStateToProps)(AdminRoute);
+export default connect(mapStateToProps)(AttendantRoute);
