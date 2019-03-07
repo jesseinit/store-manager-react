@@ -6,7 +6,7 @@ import * as authActions from '../../actions/authActions/authActions';
 import './Header.scss';
 import CartButton from '../CartButton/CartButton';
 
-export const Header = ({ auth: { userRole }, logOutUser }) => {
+export const Header = ({ auth: { userRole }, logOutUser, cart }) => {
   const logOut = e => {
     e.preventDefault();
     logOutUser();
@@ -27,7 +27,7 @@ export const Header = ({ auth: { userRole }, logOutUser }) => {
     Admin: <LogoutBtn logOutUser={logOut} />,
     Attendant: (
       <>
-        <CartButton />
+        <CartButton cart={cart} />
         <LogoutBtn logOutUser={logOut} />
       </>
     )
@@ -57,18 +57,23 @@ Header.propTypes = {
     userRole: PropTypes.string,
     isAuthenticated: PropTypes.bool
   }),
-  logOutUser: PropTypes.func.isRequired
+  logOutUser: PropTypes.func.isRequired,
+  cart: PropTypes.oneOfType([PropTypes.object])
 };
 
 Header.defaultProps = {
   auth: {
     userRole: '',
     isAuthenticated: false
+  },
+  cart: {
+    cartItems: []
   }
 };
 
 const mapStateToProps = state => ({
-  auth: state.auth
+  auth: state.auth,
+  cart: state.cart
 });
 
 const mapActionToProps = { logOutUser: authActions.logOutUser };

@@ -86,6 +86,9 @@
       "src/**/*.{js,jsx,mjs}",
       "!<rootDir>/node_modules/",
       "!src/App.js",
+      "!src/components/**/MySalesPane.jsx",
+      "!src/components/**/Modals/*.jsx",
+      "!src/components/**/CartGridView.jsx",
       "!src/store/store.js",
       "!src/utils/*.js"
     ],

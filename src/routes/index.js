@@ -9,6 +9,7 @@ import AttendantRoutesHOC from '../containers/AttendantRoutes';
 import Accounts from '../views/AccountsPage/AccountsPage';
 import MakeSalePage from '../views/MakeSalePage/MakeSalePage';
 import ProductSettingsPage from '../views/ProductSettingsPage/ProductSettingsPage';
+import CartsPage from '../views/CartsPage/CartsPage';
 
 const Routes = () => (
   <>
@@ -19,6 +20,7 @@ const Routes = () => (
         <AdminRoutesHOC exact path="/staff-accounts" component={Accounts} />
         <AdminRoutesHOC exact path="/product-settings" component={ProductSettingsPage} />
         <AttendantRoutesHOC exact path="/make-sale" component={MakeSalePage} />
+        <AttendantRoutesHOC exact path="/cart" component={CartsPage} />
         <Route component={NotFound} />
       </Switch>
     </BrowserRouter>

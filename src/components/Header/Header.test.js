@@ -11,7 +11,7 @@ const mockStore = configureMockStore();
 let store;
 
 describe('<Header />', () => {
-  const props = { auth: { userRole: 'Attendant' }, logOutUser: jest.fn() };
+  const props = { auth: { userRole: 'Attendant' }, logOutUser: jest.fn(), cart: { cartItems: [] } };
 
   test('should render successfully withour crashing', () => {
     const wrapper = shallow(<Header />);
@@ -34,7 +34,7 @@ describe('<Header />', () => {
     const wrapper = mount(
       <Provider store={store}>
         <MemoryRouter>
-          <Header />
+          <Header cart={props.cart} />
         </MemoryRouter>
       </Provider>
     );

@@ -2,6 +2,7 @@ import axios from 'axios';
 
 export const apiInstance = axios.create({
   baseURL: 'https://mystoremanager.herokuapp.com/api/v1'
+  // baseURL: 'http://localhost:3000/api/v1'
 });
 
 export default class Util {

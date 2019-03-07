@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 import ProductCard from '../ProductCard/ProductCard';
 import * as productActions from '../../actions/productActions/productActions';
 import * as categoryActions from '../../actions/categoryActions/categoryActions';
+import * as cartActions from '../../actions/cartActions/cartActions';
+
 import Loading from '../Loading/Loading';
 import Pagination from '../Pagination/Pagination';
 
@@ -17,8 +19,10 @@ class ProductsCatalog extends Component {
   render() {
     const {
       products,
+      cart,
       products: { productsList, isLoading },
-      categories: { allCategories }
+      categories: { allCategories },
+      refreshCart
     } = this.props;
     return (
       <section className="main">
@@ -45,7 +49,9 @@ class ProductsCatalog extends Component {
             <section className="products" style={!productsList.length ? { display: 'block' } : null}>
               {productsList.length ? (
                 productsList.map(product => {
-                  return <ProductCard key={product.product_id} product={product} />;
+                  return (
+                    <ProductCard key={product.product_id} product={product} refreshCart={refreshCart} cart={cart} />
+                  );
                 })
               ) : (
                 <div className="no-result">
@@ -64,21 +70,25 @@ class ProductsCatalog extends Component {
 ProductsCatalog.propTypes = {
   getCategories: PropTypes.func.isRequired,
   getProducts: PropTypes.func.isRequired,
+  refreshCart: PropTypes.func.isRequired,
   products: PropTypes.oneOfType([PropTypes.object]).isRequired,
-  categories: PropTypes.oneOfType([PropTypes.object]).isRequired
+  categories: PropTypes.oneOfType([PropTypes.object]).isRequired,
+  cart: PropTypes.oneOfType([PropTypes.object]).isRequired
 };
 
 const mapStateToProps = state => ({
   auth: state.auth,
   products: state.products,
-  categories: state.categories
+  categories: state.categories,
+  cart: state.cart
 });
 
 const mapActionsToProps = {
   getProducts: productActions.getProducts,
   getCategories: categoryActions.getCategories,
   goToNextPage: productActions.goToNextPage,
-  goToPrevPage: productActions.goToPrevPage
+  goToPrevPage: productActions.goToPrevPage,
+  refreshCart: cartActions.refreshCart
 };
 
 export default connect(
