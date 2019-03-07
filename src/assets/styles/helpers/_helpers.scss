@@ -1,15 +1,6 @@
-.empty-cart {
-  &::before {
-    position: absolute;
-    background: #fff;
-    content: 'Your cart is currently empty! ';
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 1.2rem;
-    width: 100%;
-    height: 100%;
-  }
+.cart__header {
+  text-align: center;
+  letter-spacing: 2px;
 }
 
 .blue-bg {

@@ -1,14 +1,17 @@
 import React from 'react';
+import { BrowserRouter as Router, Link } from 'react-router-dom';
 import cartIcon from '../../assets/img/cart-icon.png';
 
-const CartButton = () => {
+const CartButton = ({ cart }) => {
   return (
-    <li className="cart">
-      <a href="./cart">
-        <img className="cart__image" src={cartIcon} alt="cartImage" />
-        <span className="cart__count">0</span>
-      </a>
-    </li>
+    <Router>
+      <Link to="cart">
+        <li className="cart">
+          <img className="cart__image" src={cartIcon} alt="cartImage" />
+          <span className="cart__count">{cart.cartItems.length || 0}</span>
+        </li>
+      </Link>
+    </Router>
   );
 };
 

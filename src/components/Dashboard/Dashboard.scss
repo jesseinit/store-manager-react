@@ -105,6 +105,25 @@
     }
   }
 
+  .checkout-success {
+    height: 300px;
+    display: flex;
+    justify-content: center;
+
+    background: url('https://res.cloudinary.com/jesseinit/image/upload/v1551999018/store/successful_purchase_uyin.svg')
+      no-repeat;
+    background-size: 150px;
+    background-position: center;
+    & h3 {
+      font-size: 0.9rem;
+      text-align: center;
+      margin-top: 50px;
+      @include desktop {
+        font-size: 1.18rem;
+      }
+    }
+  }
+
   .sales {
     position: relative;
     input[type='submit'],
