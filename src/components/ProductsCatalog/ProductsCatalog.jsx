@@ -35,7 +35,7 @@ class ProductsCatalog extends Component {
                 );
               })}
             </select>
-            <input type="submit" className="search__submit" defaultValue="Search" />
+            <input type="submit" className="search__submit" value="Search" />
           </form>
         </section>
         {isLoading ? (

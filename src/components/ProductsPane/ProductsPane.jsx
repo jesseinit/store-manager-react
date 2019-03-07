@@ -5,20 +5,59 @@ import * as productActions from '../../actions/productActions/productActions';
 import Loading from '../Loading/Loading';
 import Pagination from '../Pagination/Pagination';
 import Util from '../../utils';
-
-// TODO: Update "productsList" - across board - to "entity" to enable reuse of pagination component
+import CreateProductModal from '../Modals/CreateProductModal';
+import * as categoryActions from '../../actions/categoryActions/categoryActions';
+import ToastContainer from '../Toasts/ToastContainer';
 
 class ProductsPane extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      productData: {},
+      setCreateModalOpen: false,
+      updateModalIsOpen: false,
+      deleteModalIsOpen: false
+    };
+  }
+
   componentDidMount() {
     const { getProducts } = this.props;
     getProducts();
   }
 
+  openUpdateModal = userData => {
+    this.setState({ updateModalIsOpen: true, userData });
+  };
+
+  openDeleteModal = userData => {
+    this.setState({ deleteModalIsOpen: true, userData });
+  };
+
+  openModal = () => {
+    this.setState({ setCreateModalOpen: true });
+  };
+
+  closeModal = () => {
+    const {
+      clearModalErrors,
+      products: { modalErrors }
+    } = this.props;
+    this.setState({ setCreateModalOpen: false, updateModalIsOpen: false, deleteModalIsOpen: false });
+    if (modalErrors.length) clearModalErrors();
+  };
+
   render() {
     const {
       products,
-      products: { productsList, isLoading }
+      categories,
+      products: { productsList, isLoading, modalErrors, modalLoading, message: actionMessage },
+      createProduct,
+      clearModalErrors,
+      getCategories
     } = this.props;
+
+    const { setCreateModalOpen } = this.state;
 
     if (isLoading) {
       return <Loading title="Fectching Products" />;
@@ -26,9 +65,23 @@ class ProductsPane extends Component {
     return (
       <section className="main">
         <section className="sales">
-          <button type="button" className="btn btn--orange" id="create-product">
+          <button type="button" className="btn btn--gradient" id="create-product" onClick={this.openModal}>
             Create Product
           </button>
+
+          <CreateProductModal
+            modalOpenState={setCreateModalOpen}
+            clearModalErrors={clearModalErrors}
+            closeModal={this.closeModal}
+            modalErrors={modalErrors}
+            modalLoading={modalLoading}
+            createProduct={createProduct}
+            getCategories={getCategories}
+            categories={categories}
+          />
+
+          <ToastContainer message={actionMessage} />
+
           <section className="filters">
             <form id="filter-name" className="filters__form">
               <fieldset>
@@ -109,7 +162,8 @@ class ProductsPane extends Component {
             </table>
           </div>
         </section>
-        <Pagination entity={products} allProps={this.props} />
+        {productsList.length ? <Pagination entity={products} allProps={this.props} /> : null}
+        {/* <Pagination entity={products} allProps={this.props} /> */}
       </section>
     );
   }
@@ -117,15 +171,22 @@ class ProductsPane extends Component {
 
 ProductsPane.propTypes = {
   getProducts: PropTypes.func.isRequired,
-  products: PropTypes.oneOfType([PropTypes.object]).isRequired
+  getCategories: PropTypes.func.isRequired,
+  createProduct: PropTypes.func.isRequired,
+  clearModalErrors: PropTypes.func.isRequired,
+  products: PropTypes.oneOfType([PropTypes.object]).isRequired,
+  categories: PropTypes.oneOfType([PropTypes.object]).isRequired
 };
 
-const mapStateToProps = state => ({ products: state.products });
+const mapStateToProps = state => ({ products: state.products, categories: state.categories });
 
 const mapActionsToProps = {
   getProducts: productActions.getProducts,
   goToNextPage: productActions.goToNextPage,
-  goToPrevPage: productActions.goToPrevPage
+  goToPrevPage: productActions.goToPrevPage,
+  createProduct: productActions.createProduct,
+  clearModalErrors: productActions.clearModalErrors,
+  getCategories: categoryActions.getCategories
 };
 
 export default connect(
