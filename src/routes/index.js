@@ -10,6 +10,8 @@ import Accounts from '../views/AccountsPage/AccountsPage';
 import MakeSalePage from '../views/MakeSalePage/MakeSalePage';
 import ProductSettingsPage from '../views/ProductSettingsPage/ProductSettingsPage';
 import CartsPage from '../views/CartsPage/CartsPage';
+import MySalesPage from '../views/MySalesPage/MySalesPage';
+import SalesRecordPage from '../views/SalesRecordPage/SalesRecordPage';
 
 const Routes = () => (
   <>
@@ -19,7 +21,9 @@ const Routes = () => (
         <AdminRoutesHOC exact path="/dashboard" component={Dashboard} />
         <AdminRoutesHOC exact path="/staff-accounts" component={Accounts} />
         <AdminRoutesHOC exact path="/product-settings" component={ProductSettingsPage} />
+        <AdminRoutesHOC exact path="/sales-record" component={SalesRecordPage} />
         <AttendantRoutesHOC exact path="/make-sale" component={MakeSalePage} />
+        <AttendantRoutesHOC exact path="/my-sales" component={MySalesPage} />
         <AttendantRoutesHOC exact path="/cart" component={CartsPage} />
         <Route component={NotFound} />
       </Switch>
