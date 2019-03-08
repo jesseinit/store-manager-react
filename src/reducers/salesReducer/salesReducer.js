@@ -18,7 +18,7 @@ const salesReducer = (state = initialState, { type, payload }) => {
     case POPULATE_DASHBOARD_SUCCESS:
       return { ...state, ...payload, isLoading: false };
     case POPULATE_SALES_SUCCESS:
-      return { ...state, ...payload };
+      return { ...state, ...payload, isLoading: false };
     default:
       return state;
   }

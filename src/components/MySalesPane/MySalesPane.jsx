@@ -19,13 +19,13 @@ class MySalesPane extends Component {
     const {
       sales: {
         misc: { totalsaleorder, totalproductsold, totalproductworth },
-        salesMade
-      },
-      auth: { isLoading }
+        salesMade,
+        isLoading
+      }
     } = this.props;
 
     if (isLoading) {
-      return <Loading />;
+      return <Loading title="Fetching My Sales" />;
     }
 
     return (

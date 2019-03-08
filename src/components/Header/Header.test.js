@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
-import { MemoryRouter } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 
 import { Provider } from 'react-redux';
 import configureMockStore from 'redux-mock-store';
@@ -19,12 +19,20 @@ describe('<Header />', () => {
   });
 
   test('should render navigation links based on user role', () => {
-    const wrapper = mount(<HeaderUnit {...props} />);
+    const wrapper = mount(
+      <BrowserRouter>
+        <HeaderUnit {...props} />
+      </BrowserRouter>
+    );
     expect(wrapper.exists('.cart')).toEqual(true);
   });
 
   test('should call the logout method when the button is clicked', () => {
-    const wrapper = mount(<HeaderUnit {...props} />);
+    const wrapper = mount(
+      <BrowserRouter>
+        <HeaderUnit {...props} />
+      </BrowserRouter>
+    );
     wrapper.find('#logout-btn').simulate('click');
     expect(props.logOutUser).toBeCalled();
   });
@@ -33,9 +41,9 @@ describe('<Header />', () => {
     store = mockStore({ auth: { isAuthenticated: false, userRole: 'Attendant' } });
     const wrapper = mount(
       <Provider store={store}>
-        <MemoryRouter>
+        <BrowserRouter>
           <Header cart={props.cart} />
-        </MemoryRouter>
+        </BrowserRouter>
       </Provider>
     );
     expect(wrapper).toMatchSnapshot();

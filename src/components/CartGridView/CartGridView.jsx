@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as cartActions from '../../actions/cartActions/cartActions';
 import Util from '../../utils';
+import Spinner from '../Spinner/Spinner';
+import ErrorToast from '../ErrorToast/ErrorToast';
 
 class CartGridView extends Component {
   state = {
@@ -32,9 +34,8 @@ class CartGridView extends Component {
 
   render() {
     const {
-      cart: { cartItems }
+      cart: { cartItems, processingCheckout, cartErrors }
     } = this.props;
-
     const { isCheckoutCompleted } = this.state;
 
     return (
@@ -51,6 +52,7 @@ class CartGridView extends Component {
           <>
             <div className="sales__meta">
               <h3 className="header cart__header">Cart</h3>
+              {cartErrors.length ? <ErrorToast errors={cartErrors} /> : null}
             </div>
             <div className="table-wrapper no-flow">
               <table id="cart-table" className="table">
@@ -102,8 +104,15 @@ class CartGridView extends Component {
                   </tr>
                 </tfoot>
               </table>
-              <button onClick={this.completeChekcout} type="button" id="complete-order" className="btn btn--gradient">
-                Complete Order
+              <button
+                onClick={this.completeChekcout}
+                type="button"
+                id="complete-order"
+                style={{ width: processingCheckout ? '150px' : null }}
+                disabled={processingCheckout ? true : null}
+                className="btn btn--gradient float-right"
+              >
+                {processingCheckout ? <Spinner /> : 'Complete Order'}
               </button>
             </div>
           </>

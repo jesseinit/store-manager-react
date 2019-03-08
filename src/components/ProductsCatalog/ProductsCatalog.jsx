@@ -33,7 +33,7 @@ class ProductsCatalog extends Component {
               <option value="All">All</option>
               {allCategories.map(category => {
                 return (
-                  <option key={category.category_id} value={category.category_name}>
+                  <option key={category.category_id} value={category.category_id}>
                     {category.category_name}
                   </option>
                 );
