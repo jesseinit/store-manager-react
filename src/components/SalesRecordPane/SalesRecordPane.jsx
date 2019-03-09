@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { populateSales } from '../../actions/salesActions/salesActions';
+import * as salesActions from '../../actions/salesActions/salesActions';
 import Util from '../../utils';
 import Loading from '../Loading/Loading';
 import ToastContainer from '../Toasts/ToastContainer';
+import Pagination from '../Pagination/Pagination';
 
 class SalesRecordPane extends Component {
   componentDidMount() {
@@ -12,9 +13,10 @@ class SalesRecordPane extends Component {
 
   render() {
     const {
+      sales,
       sales: { salesMade, isLoading }
     } = this.props;
-
+    console.log(this.props);
     if (isLoading) {
       return <Loading title="Fetching Sales Records" />;
     }
@@ -22,7 +24,7 @@ class SalesRecordPane extends Component {
       <section className="main">
         <section className="sales">
           <ToastContainer message="" />
-          <div className="sales__meta">
+          {/* <div className="sales__meta">
             <div className="sort">
               <section className="filters">
                 <form id="sort-date" className="filters__form">
@@ -56,7 +58,7 @@ class SalesRecordPane extends Component {
                 </button>
               </section>
             </div>
-          </div>
+          </div> */}
           <div className="table-wrapper">
             <table id="my-sales-table" className="table">
               <thead>
@@ -70,9 +72,9 @@ class SalesRecordPane extends Component {
                 </tr>
               </thead>
               <tbody>
-                {salesMade.map(sale => {
+                {salesMade.map((sale, index) => {
                   return (
-                    <tr key={sale.s_id}>
+                    <tr key={sale.s_id * index}>
                       <td>{sale.s_id}</td>
                       <td>{Util.formatDate(sale.s_date)}</td>
                       <td>{sale.s_description}</td>
@@ -85,6 +87,7 @@ class SalesRecordPane extends Component {
               </tbody>
             </table>
           </div>
+          {salesMade.length ? <Pagination entity={sales} allProps={this.props} /> : null}
         </section>
       </section>
     );
@@ -95,7 +98,11 @@ const mapStateToProp = state => ({
   sales: state.sales
 });
 
-const mapActionsToProp = { populateSales };
+const mapActionsToProp = {
+  populateSales: salesActions.populateSales,
+  goToNextPage: salesActions.goToNextPage,
+  goToPrevPage: salesActions.goToPrevPage
+};
 
 export default connect(
   mapStateToProp,

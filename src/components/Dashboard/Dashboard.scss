@@ -133,7 +133,10 @@
       background: #eee;
       box-shadow: 0 2px 3px rgba(#000, 0.1);
       color: #000;
-      margin-left: 5px;
+      @include desktop {
+        margin-left: 5px;
+        padding: 5px;
+      }
       @include retina {
         padding: 5px;
       }
@@ -222,9 +225,13 @@
   .pagination {
     display: flex;
     justify-content: center;
+    align-items: center;
     margin: 20px 0 10px;
+    &--info {
+      font-size: 0.8rem;
+      margin: 0 5px;
+    }
     button {
-      margin-right: 5px;
       padding: 5px 10px;
       border-radius: 3px;
       background: $dark-blue;

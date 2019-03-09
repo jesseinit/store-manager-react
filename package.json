@@ -89,6 +89,9 @@
       "!src/components/**/MySalesPane.jsx",
       "!src/components/**/Modals/*.jsx",
       "!src/components/**/CartGridView.jsx",
+      "!src/components/Pagination/*.jsx",
+      "!src/components/ProductCard/*.jsx",
+      "!src/components/ProductsCatalog/*.jsx",
       "!src/store/store.js",
       "!src/utils/*.js"
     ],

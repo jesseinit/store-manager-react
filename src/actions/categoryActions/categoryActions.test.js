@@ -2,7 +2,7 @@ import MockAdapter from 'axios-mock-adapter';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import { apiInstance } from '../../utils/index';
-import { getCategories, GET_CATEGORIES } from './categoryActions';
+import { getCategories, GET_CATEGORIES, GET_CATEGORIES_START } from './categoryActions';
 
 const mock = new MockAdapter(apiInstance);
 const mockStore = configureMockStore([thunk]);
@@ -22,8 +22,12 @@ describe('Category Actions', () => {
 
     const expectedAction = [
       {
+        type: GET_CATEGORIES_START,
+        payload: { isLoading: true }
+      },
+      {
         type: GET_CATEGORIES,
-        payload: { allCategories: [] }
+        payload: { allCategories: [], isLoading: false }
       }
     ];
 
@@ -35,7 +39,13 @@ describe('Category Actions', () => {
   test('should dispatch GET_CATEGORIES with the right payload', () => {
     mock.onGet('/category').reply(401, { data: [] });
 
-    const expectedAction = [{ type: 'USER_LOGGED_OUT', payload: { isAuthenticated: false, userRole: 'guest' } }];
+    const expectedAction = [
+      {
+        type: GET_CATEGORIES_START,
+        payload: { isLoading: true }
+      },
+      { type: 'USER_LOGGED_OUT', payload: { isAuthenticated: false, userRole: 'guest' } }
+    ];
 
     store.dispatch(getCategories()).then(() => {
       expect(store.getActions()).toEqual(expectedAction);

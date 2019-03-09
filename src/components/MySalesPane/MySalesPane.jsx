@@ -68,7 +68,7 @@ class MySalesPane extends Component {
           </div>
         </section>
         <section className="sales">
-          <div className="filters">
+          {/* <div className="filters">
             <form id="sort-id" className="filters__form">
               <fieldset>
                 <legend>By Sales ID</legend>
@@ -79,7 +79,7 @@ class MySalesPane extends Component {
             <button type="button" className="filters__clear" id="clear-filters-attendant">
               Clear Filters
             </button>
-          </div>
+          </div> */}
           <div className="table-wrapper">
             <table id="my-sales-table" className="table">
               <thead>

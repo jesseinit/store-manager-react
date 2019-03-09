@@ -20,7 +20,7 @@ const Pagination = ({ allProps, entity }) => {
           Previous
         </button>
       )}
-
+      <p className="pagination--info">{`Page ${entity.meta.currentPage} of ${entity.meta.totalPages}`}</p>
       {entity.meta.hasNextPage ? (
         <button type="button" onClick={goToNextPage} className="pagination__next">
           Next
