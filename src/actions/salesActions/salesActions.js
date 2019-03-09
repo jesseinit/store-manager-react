@@ -49,7 +49,7 @@ export const populateSales = userRole => async dispatch => {
 export const goToNextPage = nextPage => async dispatch => {
   try {
     const { data, meta } = await Util.makeRequest(`/sales?page=${nextPage}`);
-    dispatch({ type: GET_SALES_NEXT_PAGE, payload: { productsList: data, meta } });
+    dispatch({ type: GET_SALES_NEXT_PAGE, payload: { salesMade: data, meta } });
   } catch (error) {
     const { response } = error;
     if (response.status === 401) {
@@ -61,7 +61,7 @@ export const goToNextPage = nextPage => async dispatch => {
 export const goToPrevPage = prevPage => async dispatch => {
   try {
     const { data, meta } = await Util.makeRequest(`/sales?page=${prevPage}`);
-    dispatch({ type: GET_SALES_PREV_PAGE, payload: { productsList: data, meta } });
+    dispatch({ type: GET_SALES_PREV_PAGE, payload: { salesMade: data, meta } });
   } catch (error) {
     const { response } = error;
     if (response.status === 401) {
