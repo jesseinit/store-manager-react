@@ -82,7 +82,7 @@ class ProductsPane extends Component {
 
           <ToastContainer message={actionMessage} />
 
-          <section className="filters">
+          {/* <section className="filters">
             <form id="filter-name" className="filters__form">
               <fieldset>
                 <legend>Filter By Product Name</legend>
@@ -115,7 +115,7 @@ class ProductsPane extends Component {
             <button type="button" id="clear-product-filters" className="filters__clear">
               Clear Filters
             </button>
-          </section>
+          </section> */}
           <div className="table-wrapper">
             <table id="products-table" className="table">
               <thead>
@@ -163,7 +163,6 @@ class ProductsPane extends Component {
           </div>
         </section>
         {productsList.length ? <Pagination entity={products} allProps={this.props} /> : null}
-        {/* <Pagination entity={products} allProps={this.props} /> */}
       </section>
     );
   }

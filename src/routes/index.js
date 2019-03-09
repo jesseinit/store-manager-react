@@ -12,6 +12,7 @@ import ProductSettingsPage from '../views/ProductSettingsPage/ProductSettingsPag
 import CartsPage from '../views/CartsPage/CartsPage';
 import MySalesPage from '../views/MySalesPage/MySalesPage';
 import SalesRecordPage from '../views/SalesRecordPage/SalesRecordPage';
+import CategorySettingsPage from '../views/CategorySettingsPage/CategorySettingsPage';
 
 const Routes = () => (
   <>
@@ -21,6 +22,7 @@ const Routes = () => (
         <AdminRoutesHOC exact path="/dashboard" component={Dashboard} />
         <AdminRoutesHOC exact path="/staff-accounts" component={Accounts} />
         <AdminRoutesHOC exact path="/product-settings" component={ProductSettingsPage} />
+        <AdminRoutesHOC exact path="/category-settings" component={CategorySettingsPage} />
         <AdminRoutesHOC exact path="/sales-record" component={SalesRecordPage} />
         <AttendantRoutesHOC exact path="/make-sale" component={MakeSalePage} />
         <AttendantRoutesHOC exact path="/my-sales" component={MySalesPage} />
