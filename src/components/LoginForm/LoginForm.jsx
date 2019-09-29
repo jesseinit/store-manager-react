@@ -8,6 +8,7 @@ import './LoginForm.scss';
 import ErrorToast from '../ErrorToast/ErrorToast';
 import * as authActions from '../../actions/authActions/authActions';
 import Spinner from '../Spinner/Spinner';
+import logo from '../../assets/img/icon.svg';
 
 export class LoginForm extends Component {
   loginUser = e => {
@@ -41,7 +42,7 @@ export class LoginForm extends Component {
     return (
       <section className="form__wrapper">
         <div className="form">
-          <img className="form__logo" src="/src/assets/img/icon.svg" alt="logo" />
+          <img className="form__logo" src={logo} alt="logo" />
           <h4 className="form__appname">Store Manager</h4>
           <p className="form__description">
             Store Manager is a web application that helps store owners manage sales and product inventory records.
