@@ -12,20 +12,18 @@ import Spinner from '../Spinner/Spinner';
 export class LoginForm extends Component {
   loginUser = e => {
     e.preventDefault();
-    const { loginUser } = this.props;
+    const {
+      loginUser,
+      auth: { loginErrors },
+      clearLoginErrors
+    } = this.props;
+
+    if (loginErrors.length) clearLoginErrors();
 
     const email = this.email.value;
     const password = this.password.value;
 
     loginUser({ email, password });
-  };
-
-  clearErrors = () => {
-    const {
-      auth: { loginErrors },
-      clearLoginErrors
-    } = this.props;
-    if (loginErrors.length) clearLoginErrors();
   };
 
   render() {
@@ -43,6 +41,11 @@ export class LoginForm extends Component {
     return (
       <section className="form__wrapper">
         <div className="form">
+          <img className="form__logo" src="/src/assets/img/icon.svg" alt="logo" />
+          <h4 className="form__appname">Store Manager</h4>
+          <p className="form__description">
+            Store Manager is a web application that helps store owners manage sales and product inventory records.
+          </p>
           <p className="form__header">Login with your account.</p>
           <form id="login-form" className="form__login" onSubmit={this.loginUser}>
             {loginErrors.length ? <ErrorToast errors={loginErrors} /> : null}
@@ -56,7 +59,6 @@ export class LoginForm extends Component {
                 required
                 pattern="(^[A-Za-z]+)(\.[a-zA-Z]+)?@storemanager.com$"
                 ref={email => (this.email = email)}
-                onFocus={this.clearErrors}
               />
             </div>
             <div className="form__control">
@@ -67,21 +69,16 @@ export class LoginForm extends Component {
                 placeholder="Password"
                 required
                 ref={password => (this.password = password)}
-                onFocus={this.clearErrors}
               />
             </div>
             <div className="form__control">
-              <button
-                onClick={this.handleClick}
-                type="submit"
-                className="btn btn--gradient full-width"
-                disabled={isLoading ? true : null}
-              >
+              <button type="submit" className="btn btn--gradient full-width" disabled={isLoading ? true : null}>
                 {isLoading ? <Spinner /> : 'Login'}
               </button>
             </div>
           </form>
         </div>
+        <div className="form__sidepane" />
       </section>
     );
   }

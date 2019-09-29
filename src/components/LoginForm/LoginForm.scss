@@ -2,37 +2,71 @@
 
 .form__wrapper {
   width: 100%;
+  padding: 10vh 0;
+  height: 100vh;
   display: flex;
   justify-content: center;
-  align-items: center;
-  height: 500px;
+  .form__sidepane {
+    display: none;
+    width: 75vh;
+    border-radius: 0px 10px 10px 0px;
+    background: url('/src/assets/img/shop-img.jpg') no-repeat;
+    background-size: cover;
+    @include tab {
+      display: block;
+    }
+  }
   .form {
+    padding: 0 15px;
     display: flex;
-    justify-content: center;
+    align-items: center;
     flex-direction: column;
     width: 320px;
-    @include retina {
-      width: 370px;
+    @include tab {
+      padding: 0 50px;
+      width: 450px;
+      background: #f7fbff;
+    }
+    &__logo {
+      margin-top: 45px;
+      width: 32px;
+      text-align: center;
+      padding-bottom: 2px;
+      border-bottom: 2px solid #4297ff;
+    }
+    &__appname {
+      margin-top: 10px;
+      font-size: 1.2em;
+      @include desktop {
+        font-size: 1.5em;
+      }
+    }
+    &__description {
+      margin-top: 10px;
+      font-size: 0.8em;
+      text-align: center;
+      @include desktop {
+        font-size: 1em;
+      }
     }
     &__header {
       margin-bottom: 10px;
-      padding: 15px;
+      padding-top: 100px;
       text-align: center;
-      font-size: 1.3em;
+      font-size: 1em;
       font-weight: 300;
       color: rgb(39, 39, 39);
     }
     &__login {
-      padding: 0px 15px 10px;
+      width: 100%;
     }
     &__control {
-      margin-bottom: 10px;
+      margin-bottom: 6px;
     }
     &__input {
       font-family: inherit;
       padding: 10px;
       width: 100%;
-      margin-top: 5px;
       outline: none;
       border: none;
       border: 1px solid #e6e5e5;

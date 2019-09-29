@@ -41,7 +41,7 @@ describe('<LoginForm />', () => {
     const password = wrapper.find('#login-email');
     const loginForm = wrapper.find('#login-form');
 
-    email.simulate('focus');
+    loginForm.simulate('submit');
     expect(props.clearLoginErrors).toHaveBeenCalled();
 
     email.simulate('change', { taget: { value: 'owner@storemangercom' } });
@@ -49,5 +49,19 @@ describe('<LoginForm />', () => {
     loginForm.simulate('submit');
 
     expect(props.loginUser).toHaveBeenCalled();
+  });
+
+  test('should login the user after providing wrong logon information', () => {
+    wrapper = mount(<LoginFormUnit {...{ ...props, auth: { ...props.auth, loginErrors: ['SomeSampleMessage'] } }} />);
+
+    const email = wrapper.find('#login-email');
+    const password = wrapper.find('#login-email');
+    const loginForm = wrapper.find('#login-form');
+
+    email.simulate('change', { taget: { value: 'owner@storemangercom' } });
+    password.simulate('change', { taget: { value: 'blahbalh' } });
+    loginForm.simulate('submit');
+
+    expect(props.clearLoginErrors).toHaveBeenCalled();
   });
 });

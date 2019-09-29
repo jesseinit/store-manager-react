@@ -4,7 +4,12 @@
 }
 
 .blue-bg {
-  background: rgb(243, 248, 255);
+  background: #f3f8ff;
+  @include desktop {
+    background: radial-gradient(circle, #ffb292,#f3f8ff 70%);
+    padding: 10px;
+    font-size: 1rem;
+  }
 }
 
 .grey-bg {
